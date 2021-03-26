@@ -37,7 +37,7 @@ public class PracticeService {
 		System.out.print("두 번째 숫자 : ");
 		int num2 = sc.nextInt();
 		
-		if(num1>1 && num2>1) {
+		if(num1>=1 && num2>=1) {
 			if(num1>num2) {
 				for(int i= num2; i<=num1; i++) {
 					System.out.print(i + " ");
@@ -75,5 +75,18 @@ public class PracticeService {
 			System.out.println();
 		}
 	}
-	
+	public void practice6() {
+		System.out.print("정수  : ");
+		int num1 = sc.nextInt();
+		if(num1<=9) {
+			for(int i = num1; i<10; i++) {
+				System.out.println("===="+i+"단====");
+			for(int j = 1; j<10; j++) {
+				System.out.println(i+"*"+j+"="+i*j);
+			}
+		}
+		}else {
+			System.out.println("9이하 숫자를 입력해주세요");
+		}
+	}
 }
