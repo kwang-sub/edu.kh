@@ -107,4 +107,41 @@ public class PracticeService {
 		}
 	}
 	
+//	메소드 명 : public void practice8(){}
+//	3이상인 홀수를 입력 받아 배열의 중간까지는 1부터 1씩 증가하여 오름차순으로 값을 넣고,
+//	중간 이후부터 끝까지는 1씩 감소하여 내림차순으로 값을 넣어 출력하세요.
+//	단, 입력한 정수가 홀수가 아니거나 3 미만일 경우 “다시 입력하세요”를 출력하고
+//	다시 정수를 받도록 하세요.
+	public void practice8() {
+		Scanner sc = new Scanner(System.in);
+
+		while(true) {
+			System.out.print("정수 : ");
+			int in = sc.nextInt();
+			if(in<3 || in%2==0) {
+				System.out.println("3이상의 홀수 입력해주세요");
+			}else {
+			
+				int[] num = new int[in];
+				if(in >=3) {
+					for(int i = 0; i<num.length; i++ ) {
+						num[i] = i+1;
+						System.out.print(num[i]+",");
+					}
+					
+					for(int i= num.length-2; i>=1; i--) {
+						System.out.print(num[i]+",");
+					}
+					System.out.println(num[0]);
+				}
+				break;
+			}
+			
+		}
+		
+	
+	
+	}
+	
+	
 }
