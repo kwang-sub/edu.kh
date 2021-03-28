@@ -142,6 +142,42 @@ public class PracticeService {
 	
 	
 	}
+	public void practice9() {
+		System.out.print("발생한 난수 : ");
+		int[] arr = new int[10];
+		for(int i =0; i<arr.length; i++) {
+			arr[i] = (int)(Math.random()*10+1);
+			
+			System.out.print(arr[i]+" ");
+		}
+		
+		
+	}
+	public void practice10() {
+		System.out.print("발생한 난수 : ");
+		int[] arr = new int[10];
+		int max = 0;
+		int min = arr.length;
+		for(int i =0; i<arr.length; i++) {
+			arr[i] = (int)(Math.random()*10+1);
+			
+			System.out.print(arr[i]+" ");
+		}
+		for(int i=0; i<arr.length; i++) {
+			if(arr[i]>max) {
+				max=arr[i];
+			}
+		}
+		for(int i=0; i<arr.length; i++) {
+			if(arr[i]<min) {
+				min=arr[i];
+			}
+		}
+		System.out.println();
+		System.out.println("최대값 : "+max);
+		System.out.println("최소값 : "+min);
+		
+	}
 	
 	
 }
