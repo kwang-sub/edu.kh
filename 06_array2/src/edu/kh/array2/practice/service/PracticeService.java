@@ -47,14 +47,21 @@ public class PracticeService {
 				arr[i][j] = (int)(Math.random()*10+1); 
 				arr[3][j] += arr[i][j];
 				arr[i][3] += arr[i][j];
-				arr[3][3] += arr[i][j];
+				
 				
 			}
 			
 		}
+	
 		for(int i=0; i<arr.length; i++) {
 			for(int j=0; j<arr[0].length; j++) {
 				System.out.printf("%2d ",arr[i][j]);
+				if(i==arr.length-1||j==arr[0].length) {
+					if(!(i==arr.length-1&&j==arr[0].length-1)) {
+						arr[3][3]+=arr[i][j];
+						
+					}
+				}
 			}
 			System.out.println();
 		}
@@ -70,7 +77,7 @@ public class PracticeService {
 			if(num1>0 && num1 <11 && num2>0 && num2<11){
 				for(int i=0; i<arr.length; i++) {
 					for(int j=0; j<arr[0].length;j++) {
-						arr[i][j]=(char)((int)((Math.random()*26+1)+65));
+						arr[i][j]=(char)((int)((Math.random()*26)+65));
 					}
 					
 				}
@@ -92,18 +99,18 @@ public class PracticeService {
 		System.out.print("행의 크기 : ");
 		int input = sc.nextInt();
 		char[][] arr = new char[input][];
-		int ch= 97;
+		char ch= 'a';
 		for(int i=0; i<arr.length; i++) {
-			System.out.print(i+"열의 크기 : ");
+			System.out.print(i+"헹 열의 크기 : ");
 			int in = sc.nextInt();
 			arr[i]=new char[in];
 			for(int j=0; j<arr[i].length;j++) {
-				arr[i][j]=(char)ch++;
 				
 			}
 		}
 		for(int i=0; i<arr.length; i++) {
 			for(int j=0; j<arr[i].length; j++) {
+				arr[i][j]=ch++;
 				System.out.print(arr[i][j]+" ");
 			}
 			System.out.println();
