@@ -11,7 +11,10 @@ public class Student {
 	public Student() {
 		
 	}
+	
+	
 	public Student(int grade, int classroom, String name, int kor, int eng, int math) {
+		
 		this.grade = grade;
 		this.classroom = classroom;
 		this.name = name;
@@ -19,7 +22,8 @@ public class Student {
 		this.eng = eng;
 		this.math = math;
 	}
-	
+
+
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
@@ -57,8 +61,8 @@ public class Student {
 		return math;
 	}
 	public String toString() {
-		double avg = (kor+eng+math)/3.0;
-		String result =   grade +"학년 "  + classroom + "반  " + name + "국어 : "+ kor +", 영어 : " +eng + ", 수학 : "+ math + ", 평균 : "+ avg;
+		int avg = (kor+eng+math)/3;
+		String result =   grade +"학년 "  + classroom + "반  " + name + " >> 국어 : "+ kor +", 영어 : " +eng + ", 수학 : "+ math + ", 평균 : "+ avg;
 		return result;
 		
 	}
