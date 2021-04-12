@@ -41,11 +41,26 @@ public class PracticeService implements QuestionInterface{
 			case 2: selectAll();break;
 			case 3: selectStudent();break;
 			case 4: selectEmployee();break;
-			case 5: System.out.println(searchName());break;
+			case 5: 
+				Person searchPerson = searchName();
+				if(searchPerson == null) {
+					System.out.println("일치하는 이름의 사람이 없습니다.");
+				}else {
+					System.out.println(searchPerson);
+				}
+				
+				break;
+				
 			case 6: System.out.println(printName());break;
 			case 7: printAge();break;
-			case 8: System.out.printf(" %s 정보가 삭제 되었습니다.",deletePerson()); break;
-			case 9: break;
+			case 8: Person dp = deletePerson();
+				if(dp == null) {
+					System.out.println("삭제할 데이터가 없습니다.");
+				}else {
+					System.out.println(dp + "정보가 삭제 되었습니다.");
+				}
+				break;
+			case 9: addPerson(); break;
 			case 0:  break;
 			
 			
@@ -112,20 +127,30 @@ public class PracticeService implements QuestionInterface{
 	// 3. pArr배열에서 학생 정보만 출력하기
 	@Override
 	public void selectStudent() {
+		int count = 0;
 		for(Person p : pArr) {
-			if(p instanceof Student) {
+			if(p != null && p instanceof Student) {
 				System.out.println(p);
+				count++;
 			}
+		}
+		if(count == 0 ) {
+			System.out.println("학생 정보가 없습니다.");
 		}
 			
 	}
 	// 4. pArr배열에서 직원 정보만 출력하기
 	@Override
 	public void selectEmployee() {
+		int count = 0;
 		for(Person p : pArr) {
-			if(p instanceof Employee) {
+			if(p != null && p instanceof Employee) {
 				System.out.println(p);
+				count++;
 			}
+		}
+		if(count == 0 ) {
+			System.out.println("사원 정보가 없습니다.");
 		}
 		
 	}
@@ -134,9 +159,8 @@ public class PracticeService implements QuestionInterface{
 	public Person searchName() {
 		System.out.print("이름 입력 : ");
 		String name = sc.next();
-		String result ="";
 		for(Person p : pArr) {
-			if(name.equals(p.getName())) {
+			if(p != null && name.equals(p.getName())) {
 				return p;
 			}
 		}
@@ -146,9 +170,13 @@ public class PracticeService implements QuestionInterface{
 	@Override
 	public String printName() {
 		String name ="";
-		for(int i = 0; i<pArr.length-1; i++) {
-			
-			if()
+		for(int i = 0; i<pArr.length; i++) {
+			if(pArr[i] != null) {
+				name += pArr[i].getName();
+				if(i < pArr.length-1) {
+					name += ", ";
+				}
+			}	
 		}
 		return name;
 	}
@@ -157,7 +185,7 @@ public class PracticeService implements QuestionInterface{
 	public void printAge() {
 		int sum = 0;
 		int min = Integer.MAX_VALUE;
-		int max = 0;
+		int max = Integer.MIN_VALUE;
 		for(Person p : pArr) {
 			sum += p.getAge();
 			if(max<p.getAge()) {
@@ -171,22 +199,87 @@ public class PracticeService implements QuestionInterface{
 		System.out.println("최저 연령 : " + min);
 	}
 
+	
+	// 8. 특정 인덱스에 있는 사람의 정보를 삭제하고,
+	// 삭제된 사람 정보를 얻어와 출력하기
+	// ex)
+	// 삭제할 인덱스 : 0
+	// 0번 인덱스에 있던 홍길동 / 20 / 3 / 5 정보가 삭제되었습니다
 	@Override
 	public Person deletePerson() {
 		
+		Person str =  null;
+		
 		System.out.println("삭제할 인덱스 : ");
 		int in = sc.nextInt();
-		
-		Person str = pArr[in];
-		pArr[in] =null;
+		if(in >=0 && in<pArr.length) {
+			if(pArr[in] != null)
+			 str = pArr[in];
+			pArr[in] =null;
+		}
 		
 		return str;
 	}
 
 	@Override
 	public void addPerson() {
-		
+		Person[] newArr = new Person[pArr.length + 1];
+		for(int i = 0;  i < pArr.length; i++) {
+			
+			newArr[i] = pArr[i];
+		}
+	      int sel = 0;
+	      do {
+	    	  System.out.print("1.학생 / 2.직원 (선택) : ");
+	    	  sel = sc.nextInt();
+	    	  sc.nextLine();
+	         if(sel == 1) { // 학생 정보(이름, 나이, 학년, 반) 입력 받기
+	            System.out.println("=== 학생 정보 입력 ===");
+	            
+	            System.out.print("이름 : ");
+	            String name = sc.next();
+	            
+	            System.out.print("나이 : ");
+	            int age = sc.nextInt();
+	            
+	            System.out.print("학년 : ");
+	            int grade = sc.nextInt();
+	            
+	            System.out.print("반 : ");
+	            int classroom = sc.nextInt();
+	            sc.nextLine();
+	            
+	            pArr[pArr.length - 1] = new Student(name, age, grade, classroom);
+	            
+	         }else if(sel == 2) { // 직원 정보(이름, 나이, 사번, 직급, 급여) 입력 받기
+	            System.out.println("=== 직원 정보 입력 ===");
+	            
+	            System.out.print("이름 : ");
+	            String name = sc.next();
+	            
+	            System.out.print("나이 : ");
+	            int age = sc.nextInt();
+	            
+	            System.out.print("사번 : ");
+	            int empNo = sc.nextInt();
+	            
+	            System.out.print("직급 : ");
+	            String position = sc.next();
+	            
+	            System.out.print("급여: ");
+	            int salary = sc.nextInt();
+	            sc.nextLine();
+	            
+	            pArr[newArr.length - 1] = new Employee(name, age, empNo, position, salary);
+	            
+	         }else { // 다른 숫자를 입력한 경우
+	            System.out.println("잘못입력하셨습니다. ");
+	         }
+	         
+	      }while( !(sel == 1 || sel == 2) );
 		
 	}
+
+	
 	
 }
