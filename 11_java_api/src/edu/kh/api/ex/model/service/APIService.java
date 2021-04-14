@@ -94,7 +94,7 @@ public class APIService {
 		String str1 = "Hello World";
 		System.out.println(str1.contains("World"));
 		
-//		int indexOf(String str) : 특정 문자열이 시작하는 인덱스를 반환 없으면 -1을 반환하고 중복되는 문자열이 있다면 앞에서 검색해서 첫번째인덱스를 반환한다
+//		String indexOf(String str) : 특정 문자열이 시작하는 인덱스를 반환 없으면 -1을 반환하고 중복되는 문자열이 있다면 앞에서 검색해서 첫번째인덱스를 반환한다
 		String str2 = "abcdef abcdef";
 		System.out.println(str2.indexOf("c"));
 		System.out.println(str2.lastIndexOf("c"));
@@ -220,6 +220,7 @@ public class APIService {
 		
 //		autoBoxing / AutoUnBoxing
 //		자동으로 기본 자료형 <->Wrapper 객체 형변환
+//		Java9 버전 이후부터는 AutoBoxing/AutoUnBoxing이 강제됨
 	}
 	
 }
