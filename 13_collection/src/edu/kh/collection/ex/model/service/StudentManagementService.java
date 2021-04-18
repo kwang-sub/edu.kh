@@ -59,6 +59,7 @@ public class StudentManagementService {
 	}
 	
 	public Student createStuden() throws InputMismatchException {
+		
 		System.out.print("이름 입력 : ");
 		String name = sc.nextLine();
 		
